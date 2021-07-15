@@ -1,0 +1,4 @@
+.ui.orange.button:focus,
+.ui.orange.buttons .button:focus {
+  background-color: #f2711c;
+}
