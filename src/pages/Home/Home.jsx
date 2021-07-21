@@ -8,6 +8,7 @@ import { FETCH_POSTS_QUERY } from '../../utils/graphql';
 import './Home.scss';
 import PostCard from '../../components/PostCard/PostCard';
 import PostForm from '../../components/PostForm/PostForm';
+import FileUploadButton from '../../components/FileUploadButton/FileUploadButton';
 
 const Home = () => {
   const { user } = useContext(AuthContext);
@@ -39,6 +40,7 @@ const Home = () => {
           </Transition.Group>
         )}
       </Grid.Row>
+      <FileUploadButton />
     </Grid>
   );
 };

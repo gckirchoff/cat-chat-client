@@ -22,7 +22,9 @@ const Login = (props) => {
       props.history.push('/');
     },
     onError(err) {
-      setErrors(err.graphQLErrors[0].extensions.exception.errors);
+      console.log(err);
+      setErrors(err[0]);
+      // err.graphQLErrors[0].extensions.exception.errors
     },
     variables: values,
   });
@@ -57,7 +59,7 @@ const Login = (props) => {
           Login
         </Button>
       </Form>
-      {Object.keys(errors).length > 0 && (
+      {/* {Object.keys(errors).length > 0 && (
         <div className="ui error message">
           <ul className="list">
             {Object.values(errors).map((error) => (
@@ -65,7 +67,7 @@ const Login = (props) => {
             ))}
           </ul>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
