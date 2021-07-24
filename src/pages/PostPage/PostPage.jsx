@@ -54,6 +54,7 @@ const PostPage = (props) => {
     const {
       id,
       body,
+      imageUrl,
       createdAt,
       userName,
       comments,
@@ -62,14 +63,14 @@ const PostPage = (props) => {
       commentCount,
     } = getPost;
 
-    console.log(comments);
+    console.log(imageUrl);
 
     postMarkup = (
       <Grid>
         <Grid.Row>
           <Grid.Column width={2}>
             <Image
-              src="https://react.semantic-ui.com/images/avatar/large/molly.png"
+              src={`http://localhost:5000${imageUrl}`}
               size="small"
               float="right"
             />
@@ -156,6 +157,7 @@ const FETCH_POST_QUERY = gql`
     getPost(postId: $postId) {
       id
       body
+      imageUrl
       createdAt
       userName
       likeCount

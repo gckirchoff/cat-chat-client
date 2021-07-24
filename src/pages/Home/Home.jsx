@@ -16,6 +16,7 @@ const Home = () => {
     FETCH_POSTS_QUERY
   );
 
+  console.log(posts);
   return (
     <Grid columns={3}>
       <Grid.Row className="home-title">
@@ -40,7 +41,6 @@ const Home = () => {
           </Transition.Group>
         )}
       </Grid.Row>
-      <FlaskFileUploadButton />
     </Grid>
   );
 };
