@@ -25,16 +25,14 @@ const PostCard = ({
 
   return (
     <Card fluid>
-      <Card.Content>
+      <Card.Content as={Link} to={`/posts/${id}`}>
         <Image
           floated="right"
           size="mini"
           src={`http://localhost:5000${imageUrl}`}
         />
         <Card.Header>{userName}</Card.Header>
-        <Card.Meta as={Link} to={`/posts/${id}`}>
-          {moment(createdAt).fromNow(true)}
-        </Card.Meta>
+        <Card.Meta>{moment(createdAt).fromNow()}</Card.Meta>
         <Card.Description>{body}</Card.Description>
       </Card.Content>
       <Card.Content extra>
@@ -49,7 +47,9 @@ const PostCard = ({
             </Label>
           </Button>
         </PopupWrapper>
-        {user && user.userName === userName && <DeleteButton postId={id} />}
+        {user && user.userName === userName && (
+          <DeleteButton imageUrl={imageUrl} postId={id} />
+        )}
       </Card.Content>
     </Card>
   );

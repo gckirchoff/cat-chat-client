@@ -8,7 +8,6 @@ import { FETCH_POSTS_QUERY } from '../../utils/graphql';
 import './Home.scss';
 import PostCard from '../../components/PostCard/PostCard';
 import PostForm from '../../components/PostForm/PostForm';
-import FlaskFileUploadButton from '../../components/FileUploadButton/FlaskFileUploadButton';
 
 const Home = () => {
   const { user } = useContext(AuthContext);
@@ -17,31 +16,69 @@ const Home = () => {
   );
 
   console.log(posts);
+  // return (
+  //   <>
+  //     {user && <PostForm />}
+  //     <Grid columns={3}>
+  //       <Grid.Row className="home-title">
+  //         <h1>Recent Posts</h1>
+  //       </Grid.Row>
+  //       {/* <Grid.Row>
+  //       {user && (
+  //         <Grid.Column>
+  //           <PostForm />
+  //         </Grid.Column>
+  //       )}
+  //     </Grid.Row> */}
+  //       <Grid.Row>
+  //         {loading ? (
+  //           <h1>Loading posts...</h1>
+  //         ) : (
+  //           <Transition.Group>
+  //             {posts &&
+  //               posts.map((post) => (
+  //                 <Grid.Column key={post.id} style={{ marginBottom: '20px' }}>
+  //                   <PostCard post={post} />
+  //                 </Grid.Column>
+  //               ))}
+  //           </Transition.Group>
+  //         )}
+  //       </Grid.Row>
+  //     </Grid>
+  //   </>
+  // );
+
   return (
-    <Grid columns={3}>
-      <Grid.Row className="home-title">
-        <h1>Recent Posts</h1>
-      </Grid.Row>
-      <Grid.Row>
+    <>
+      <Grid columns={user ? 2 : 1} stretched>
+        <Grid.Row className="home-title">
+          <h1>Recent Posts</h1>
+        </Grid.Row>
         {user && (
-          <Grid.Column>
+          <Grid.Column width={5}>
+            {/* <Grid.Column> */}
             <PostForm />
+            {/* </Grid.Column> */}
           </Grid.Column>
         )}
-        {loading ? (
-          <h1>Loading posts...</h1>
-        ) : (
-          <Transition.Group>
-            {posts &&
-              posts.map((post) => (
-                <Grid.Column key={post.id} style={{ marginBottom: '20px' }}>
-                  <PostCard post={post} />
-                </Grid.Column>
-              ))}
-          </Transition.Group>
-        )}
-      </Grid.Row>
-    </Grid>
+        <Grid.Column width={user ? 11 : 16}>
+          <Grid columns={user ? 2 : 3}>
+            {loading ? (
+              <h1>Loading posts...</h1>
+            ) : (
+              <Transition.Group>
+                {posts &&
+                  posts.map((post) => (
+                    <Grid.Column key={post.id} style={{ marginBottom: '20px' }}>
+                      <PostCard post={post} />
+                    </Grid.Column>
+                  ))}
+              </Transition.Group>
+            )}
+          </Grid>
+        </Grid.Column>
+      </Grid>
+    </>
   );
 };
 

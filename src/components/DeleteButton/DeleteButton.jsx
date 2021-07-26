@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { Button, Icon, Confirm } from 'semantic-ui-react';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
+import axios from 'axios';
 
 import { FETCH_POSTS_QUERY } from '../../utils/graphql';
 import PopupWrapper from '../../utils/PopupWrapper';
 
-const DeleteButton = ({ postId, commentId, callback }) => {
+const DeleteButton = ({ postId, imageUrl, commentId, callback }) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
 
   const mutation = commentId ? DELETE_COMMENT_MUTATION : DELETE_POST_MUTATION;
@@ -15,6 +16,9 @@ const DeleteButton = ({ postId, commentId, callback }) => {
     update(proxy) {
       setConfirmOpen(false);
       if (!commentId) {
+        axios.delete('http://localhost:5000', {
+          data: { imageUrl: imageUrl.replace('/uploads/', '') },
+        });
         const data = proxy.readQuery({
           query: FETCH_POSTS_QUERY,
         });

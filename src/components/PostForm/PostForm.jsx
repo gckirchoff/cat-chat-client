@@ -7,6 +7,8 @@ import { post } from 'axios';
 import { useForm } from '../../utils/hooks';
 import { FETCH_POSTS_QUERY } from '../../utils/graphql';
 
+import './PostForm.scss';
+
 const PostForm = () => {
   const [image, setImage] = useState(null);
   const [imageError, setImageError] = useState('');
@@ -60,7 +62,7 @@ const PostForm = () => {
     setImageError('');
     const { data } = await fileUpload(image);
     console.log(data);
-    if (data.goodness > 0.7) {
+    if (data.status === 'success') {
       setImageUrl(data.url);
       createPost();
     } else {
@@ -69,10 +71,12 @@ const PostForm = () => {
           data.goodness * 100
         }%.`
       );
+      setTimeout(() => setImageError(''), 4500);
     }
   }
 
   return (
+    // <div className="post-form-container">
     <>
       <Form onSubmit={onSubmit}>
         <h2>Create a post:</h2>
@@ -110,6 +114,7 @@ const PostForm = () => {
           </ul>
         </div>
       )}
+      {/* </div> */}
     </>
   );
 };

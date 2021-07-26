@@ -68,10 +68,10 @@ const PostPage = (props) => {
     postMarkup = (
       <Grid>
         <Grid.Row>
-          <Grid.Column width={2}>
+          <Grid.Column width={6}>
             <Image
               src={`http://localhost:5000${imageUrl}`}
-              size="small"
+              size="huge"
               float="right"
             />
           </Grid.Column>
