@@ -45,7 +45,10 @@ const PostForm = () => {
   };
 
   const fileUpload = (file) => {
-    const url = 'http://localhost:5000';
+    const url =
+      process.env.NODE_ENV === 'production'
+        ? 'https://obscure-scrubland-67457.herokuapp.com'
+        : 'http://localhost:5000';
     const formData = new FormData();
     formData.append('file', file);
     const config = {

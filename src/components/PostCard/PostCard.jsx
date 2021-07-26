@@ -29,7 +29,11 @@ const PostCard = ({
         <Image
           floated="right"
           size="mini"
-          src={`http://localhost:5000${imageUrl}`}
+          src={
+            process.env.NODE_ENV === 'production'
+              ? `https://obscure-scrubland-67457.herokuapp.com${imageUrl}`
+              : `http://localhost:5000${imageUrl}`
+          }
         />
         <Card.Header>{userName}</Card.Header>
         <Card.Meta>{moment(createdAt).fromNow()}</Card.Meta>

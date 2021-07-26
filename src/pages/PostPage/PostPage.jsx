@@ -70,7 +70,11 @@ const PostPage = (props) => {
         <Grid.Row>
           <Grid.Column width={6}>
             <Image
-              src={`http://localhost:5000${imageUrl}`}
+              src={
+                process.env.NODE_ENV === 'production'
+                  ? `https://obscure-scrubland-67457.herokuapp.com${imageUrl}`
+                  : `http://localhost:5000${imageUrl}`
+              }
               size="huge"
               float="right"
             />

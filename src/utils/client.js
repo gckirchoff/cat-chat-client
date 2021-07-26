@@ -7,7 +7,10 @@ import { createUploadLink } from 'apollo-upload-client';
 // });
 
 const httpLink = createUploadLink({
-  uri: 'http://localhost:3005/graphql',
+  uri:
+    process.env.NODE_ENV === 'production'
+      ? 'https://whispering-woodland-35698.herokuapp.com/graphql'
+      : 'http://localhost:3005/graphql',
 });
 
 const authLink = setContext(() => {

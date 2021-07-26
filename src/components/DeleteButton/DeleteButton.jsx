@@ -16,9 +16,14 @@ const DeleteButton = ({ postId, imageUrl, commentId, callback }) => {
     update(proxy) {
       setConfirmOpen(false);
       if (!commentId) {
-        axios.delete('http://localhost:5000', {
-          data: { imageUrl: imageUrl.replace('/uploads/', '') },
-        });
+        axios.delete(
+          process.env.NODE_ENV === 'production'
+            ? 'https://obscure-scrubland-67457.herokuapp.com'
+            : 'http://localhost:5000',
+          {
+            data: { imageUrl: imageUrl.replace('/uploads/', '') },
+          }
+        );
         const data = proxy.readQuery({
           query: FETCH_POSTS_QUERY,
         });
