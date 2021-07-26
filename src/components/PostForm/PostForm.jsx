@@ -10,6 +10,7 @@ import { FETCH_POSTS_QUERY } from '../../utils/graphql';
 import './PostForm.scss';
 
 const PostForm = () => {
+  const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
   const [imageError, setImageError] = useState('');
   const [imageUrl, setImageUrl] = useState('');
@@ -62,6 +63,7 @@ const PostForm = () => {
   };
 
   async function createPostCallback() {
+    setLoading(true);
     setImageError('');
     const { data } = await fileUpload(image);
     console.log(data);
@@ -76,12 +78,13 @@ const PostForm = () => {
       );
       setTimeout(() => setImageError(''), 4500);
     }
+    setLoading(false);
   }
 
   return (
     // <div className="post-form-container">
     <>
-      <Form onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit} loading={loading}>
         <h2>Create a post:</h2>
         <Form.Field>
           <Form.Input
