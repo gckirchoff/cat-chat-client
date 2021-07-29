@@ -53,8 +53,8 @@ const Home = () => {
       <Header as="h2">
         Welcome to Cat Chat!
         <Header.Subheader>
-          This social media app uses a custom neural network to only allow users
-          to post pictures of cats. Try it out!
+          This social media app uses a custom neural network that only permits
+          users to post pictures of cats. Try it out!
         </Header.Subheader>
       </Header>
       <Grid columns={user ? 2 : 1} stretched>
