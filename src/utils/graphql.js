@@ -8,6 +8,7 @@ export const FETCH_POSTS_QUERY = gql`
       createdAt
       userName
       likeCount
+      goodness
       imageUrl
       likes {
         userName

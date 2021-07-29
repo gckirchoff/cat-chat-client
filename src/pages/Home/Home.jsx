@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useQuery } from '@apollo/client';
-import { Grid, Transition } from 'semantic-ui-react';
+import { Grid, Transition, Header } from 'semantic-ui-react';
 
 import { AuthContext } from '../../context/auth';
 import { FETCH_POSTS_QUERY } from '../../utils/graphql';
@@ -50,12 +50,19 @@ const Home = () => {
 
   return (
     <>
+      <Header as="h2">
+        Welcome to Cat Chat!
+        <Header.Subheader>
+          This social media app uses a custom neural network to only allow users
+          to post pictures of cats. Try it out!
+        </Header.Subheader>
+      </Header>
       <Grid columns={user ? 2 : 1} stretched>
         <Grid.Row className="home-title">
           <h1>Recent Posts</h1>
         </Grid.Row>
         {user && (
-          <Grid.Column width={5}>
+          <Grid.Column width={5} verticalAlign="top">
             {/* <Grid.Column> */}
             <PostForm />
             {/* </Grid.Column> */}

@@ -19,24 +19,19 @@ const PostCard = ({
     likes,
     comments,
     imageUrl,
+    goodness,
   },
 }) => {
   const { user } = useContext(AuthContext);
-
   return (
     <Card fluid>
       <Card.Content as={Link} to={`/posts/${id}`}>
-        <Image
-          floated="right"
-          size="mini"
-          src={
-            process.env.NODE_ENV === 'production'
-              ? `https://obscure-scrubland-67457.herokuapp.com${imageUrl}`
-              : `http://localhost:5000${imageUrl}`
-          }
-        />
+        <Image floated="right" size="mini" src={imageUrl} />
         <Card.Header>{userName}</Card.Header>
-        <Card.Meta>{moment(createdAt).fromNow()}</Card.Meta>
+        {/* <Card.Meta>{moment(createdAt).fromNow()}</Card.Meta> */}
+        <Card.Meta>
+          Goodness level: {Math.round(Number(goodness) * 10000) / 100}%
+        </Card.Meta>
         <Card.Description>{body}</Card.Description>
       </Card.Content>
       <Card.Content extra>

@@ -63,21 +63,11 @@ const PostPage = (props) => {
       commentCount,
     } = getPost;
 
-    console.log(imageUrl);
-
     postMarkup = (
       <Grid>
         <Grid.Row>
           <Grid.Column width={6}>
-            <Image
-              src={
-                process.env.NODE_ENV === 'production'
-                  ? `https://obscure-scrubland-67457.herokuapp.com${imageUrl}`
-                  : `http://localhost:5000${imageUrl}`
-              }
-              size="huge"
-              float="right"
-            />
+            <Image src={imageUrl} size="huge" float="right" />
           </Grid.Column>
           <Grid.Column width={10}>
             <Card fluid>
@@ -142,7 +132,7 @@ const PostPage = (props) => {
                     <DeleteButton postId={id} commentId={comment.id} />
                   )}
                   <Card.Header>{comment.userName}</Card.Header>
-                  <Card.Meta>{moment(createdAt).fromNow()}</Card.Meta>
+                  <Card.Meta>{moment(comment.createdAt).fromNow()}</Card.Meta>
                   <Card.Description>{comment.body}</Card.Description>
                 </Card.Content>
               </Card>

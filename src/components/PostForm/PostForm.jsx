@@ -14,6 +14,7 @@ const PostForm = () => {
   const [image, setImage] = useState(null);
   const [imageError, setImageError] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+  const [goodness, setGoodness] = useState(null);
   const { values, setValues, onChange, onSubmit } = useForm(
     createPostCallback,
     {
@@ -25,6 +26,7 @@ const PostForm = () => {
     variables: {
       body: values.body,
       imageUrl,
+      goodness,
     },
     update(proxy, result) {
       const data = proxy.readQuery({
@@ -66,9 +68,9 @@ const PostForm = () => {
     setLoading(true);
     setImageError('');
     const { data } = await fileUpload(image);
-    console.log(data);
     if (data.status === 'success') {
       setImageUrl(data.url);
+      setGoodness(data.goodness);
       createPost();
     } else {
       setImageError(
@@ -126,11 +128,12 @@ const PostForm = () => {
 };
 
 const CREATE_POST_MUTATION = gql`
-  mutation createPost($body: String!, $imageUrl: String!) {
-    createPost(body: $body, imageUrl: $imageUrl) {
+  mutation createPost($body: String!, $imageUrl: String!, $goodness: String!) {
+    createPost(body: $body, imageUrl: $imageUrl, goodness: $goodness) {
       id
       body
       imageUrl
+      goodness
       createdAt
       userName
       likes {
