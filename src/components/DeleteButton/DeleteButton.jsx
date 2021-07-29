@@ -21,7 +21,7 @@ const DeleteButton = ({ postId, imageUrl, commentId, callback }) => {
             ? 'https://obscure-scrubland-67457.herokuapp.com'
             : 'http://localhost:5000',
           {
-            data: { imageUrl: imageUrl.replace('/uploads/', '') },
+            data: { imageUrl },
           }
         );
         const data = proxy.readQuery({
