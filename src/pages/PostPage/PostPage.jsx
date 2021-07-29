@@ -94,7 +94,11 @@ const PostPage = (props) => {
                   </Button>
                 </PopupWrapper>
                 {user && user.userName === userName && (
-                  <DeleteButton postId={id} callback={deletePostCallback} />
+                  <DeleteButton
+                    imageUrl={imageUrl}
+                    postId={id}
+                    callback={deletePostCallback}
+                  />
                 )}
               </Card.Content>
             </Card>
